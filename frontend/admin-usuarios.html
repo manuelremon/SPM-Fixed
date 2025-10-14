@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>SPM · Administrar Usuarios</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="main-container">
+    <aside class="sidebar">
+      <a class="sidebar-brand" href="home.html">
+  <img src="assets/spm-logo.svg" alt="Logotipo de SPM"/>
+        <div class="sidebar-brand-copy">
+          <span class="sidebar-brand-title">SPM</span>
+          <span class="sidebar-brand-subtitle">Solicitudes Puntuales de Materiales</span>
+        </div>
+      </a>
+      <nav class="sidebar-nav">
+        <a href="crear-solicitud.html">Crear Solicitud</a>
+        <a href="mis-solicitudes.html">Mis Solicitudes</a>
+        <a href="notificaciones.html" class="has-badge">Notificaciones<span class="badge hide" id="navNotificationsBadge">0</span></a>
+        <a href="presupuesto.html" id="navPresupuesto" class="hide">Presupuesto</a>
+        <a href="mi-cuenta.html">Mi Cuenta</a>
+      </nav>
+      <nav id="adminNav" class="admin-nav hide"></nav>
+      <nav class="sidebar-nav sidebar-footer">
+        <a href="preferencias.html">Preferencias</a>
+        <a href="#" id="menuCerrarSesion">Cerrar sesión</a>
+        <a href="#" id="menuAyuda">Ayuda</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <div class="content-section content-section--wide">
+      <div class="page-header">
+        <div>
+          <p class="overline">Administración</p>
+          <h1>Gestión de usuarios</h1>
+          <p class="muted">Consultá y actualizá los perfiles existentes del sistema.</p>
+        </div>
+        <button class="btn pri" disabled>Crear usuario</button>
+      </div>
+      <section class="pane admin-users">
+        <div>
+          <header class="section-head">
+            <h2>Usuarios registrados</h2>
+            <p class="helper">Filtrá por nombre, rol, centro o identificador SPM.</p>
+          </header>
+          <div class="admin-toolbar">
+            <input id="adminUserSearch" placeholder="Buscar por nombre, rol o centro" autocomplete="off"/>
+            <button class="btn" id="adminUserSearchBtn">Buscar</button>
+            <button class="btn sec" id="adminUserResetBtn">Limpiar</button>
+            <span class="muted" id="adminUserTotal"></span>
+          </div>
+          <div class="table">
+            <table id="adminUsersTable" data-sortable-table>
+              <thead>
+                <tr><th>ID</th><th>Nombre</th><th>Rol</th><th>Posición</th><th>Sector</th><th>Centros</th><th>Emails / Aprobadores</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p class="muted" id="adminUsersEmpty" style="display:none;">No se encontraron usuarios con ese criterio.</p>
+        </div>
+        <div class="admin-user-detail" id="adminUserDetail" aria-live="polite">
+          <div class="detail-header" style="margin-bottom:8px;">
+            <h3 id="adminUserTitle">Perfil sin selección</h3>
+            <span class="pill" id="adminUserRolePill" style="display:none;"></span>
+          </div>
+          <form id="adminUserForm">
+            <div class="form-grid form-grid--compact">
+              <div>
+                <label for="adminUserId">ID SPM</label>
+                <input id="adminUserId" readonly />
+              </div>
+              <div>
+                <label for="adminUserMail">Correo corporativo</label>
+                <input id="adminUserMail" type="email" placeholder="usuario@empresa.com" autocomplete="off" />
+              </div>
+            </div>
+            <div class="form-grid form-grid--compact">
+              <div>
+                <label for="adminUserNombre">Nombre</label>
+                <input id="adminUserNombre" autocomplete="off" />
+              </div>
+              <div>
+                <label for="adminUserApellido">Apellido</label>
+                <input id="adminUserApellido" autocomplete="off" />
+              </div>
+            </div>
+            <div class="form-grid form-grid--compact">
+              <div>
+                <label for="adminUserRol">Rol</label>
+                <input id="adminUserRol" placeholder="Ej: Administrador, Aprobador" autocomplete="off" list="catalogRolesList" />
+              </div>
+              <div>
+                <label for="adminUserPosicion">Posición</label>
+                <input id="adminUserPosicion" placeholder="Ej: Gerente Regional" autocomplete="off" list="catalogPuestosList" />
+              </div>
+              <div>
+                <label for="adminUserSector">Sector</label>
+                <input id="adminUserSector" autocomplete="off" list="catalogSectoresList" />
+              </div>
+            </div>
+            <label for="adminUserCentros">Centros autorizados</label>
+            <textarea id="adminUserCentros" rows="3" placeholder="Separá por coma o salto de línea"></textarea>
+            <div class="form-grid form-grid--compact">
+              <div>
+                <label for="adminUserJefe">Jefe directo</label>
+                <input id="adminUserJefe" placeholder="mail o ID" autocomplete="off" />
+              </div>
+              <div>
+                <label for="adminUserGerente1">Gerente 1</label>
+                <input id="adminUserGerente1" placeholder="mail o ID" autocomplete="off" />
+              </div>
+              <div>
+                <label for="adminUserGerente2">Gerente 2</label>
+                <input id="adminUserGerente2" placeholder="mail o ID" autocomplete="off" />
+              </div>
+            </div>
+            <div class="form-grid form-grid--compact">
+              <div>
+                <label for="adminUserPassword">Nueva contraseña</label>
+                <input id="adminUserPassword" type="password" autocomplete="new-password" placeholder="Opcional" />
+              </div>
+              <div>
+                <label for="adminUserPasswordConfirm">Confirmar contraseña</label>
+                <input id="adminUserPasswordConfirm" type="password" autocomplete="new-password" placeholder="Repetí la contraseña" />
+              </div>
+            </div>
+            <div class="actions" style="justify-content:flex-start;margin-top:10px;">
+              <button class="btn pri" id="adminUserGuardar" type="submit" disabled>Guardar cambios</button>
+              <button class="btn sec" id="adminUserReset" type="button" disabled>Descartar</button>
+            </div>
+            <p class="muted" id="adminUserHint" style="margin-top:4px;">Seleccioná un usuario para editarlo.</p>
+          </form>
+        </div>
+      </section>
+      </div>
+    </main>
+  </div>
+
+  <datalist id="catalogRolesList"></datalist>
+  <datalist id="catalogPuestosList"></datalist>
+  <datalist id="catalogSectoresList"></datalist>
+
+  <div class="toasts" id="toasts"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>SPM · Administrar Usuarios</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="main-container">
+    <aside class="sidebar">
+      <a class="sidebar-brand" href="home.html">
+  <img src="assets/spm-logo.svg" alt="Logotipo de SPM"/>
+        <div class="sidebar-brand-copy">
+          <span class="sidebar-brand-title">SPM</span>
+          <span class="sidebar-brand-subtitle">Solicitudes Puntuales de Materiales</span>
+        </div>
+      </a>
+      <nav class="sidebar-nav">
+        <a href="crear-solicitud.html">Crear Solicitud</a>
+        <a href="mis-solicitudes.html">Mis Solicitudes</a>
+        <a href="notificaciones.html" class="has-badge">Notificaciones<span class="badge hide" id="navNotificationsBadge">0</span></a>
+        <a href="presupuesto.html" id="navPresupuesto" class="hide">Presupuesto</a>
+        <a href="mi-cuenta.html">Mi Cuenta</a>
+      </nav>
+      <nav id="adminNav" class="admin-nav hide"></nav>
+      <nav class="sidebar-nav sidebar-footer">
+        <a href="preferencias.html">Preferencias</a>
+        <a href="#" id="menuCerrarSesion">Cerrar sesión</a>
+        <a href="#" id="menuAyuda">Ayuda</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <div class="content-section content-section--wide">
+      <div class="page-header">
+        <div>
+          <p class="overline">Administración</p>
+          <h1>Gestión de usuarios</h1>
+          <p class="muted">Consultá y actualizá los perfiles existentes del sistema.</p>
+        </div>
+        <button class="btn pri" disabled>Crear usuario</button>
+      </div>
+      <section class="pane admin-users">
+        <div>
+          <header class="section-head">
+            <h2>Usuarios registrados</h2>
+            <p class="helper">Filtrá por nombre, rol, centro o identificador SPM.</p>
+          </header>
+          <div class="admin-toolbar">
+            <input id="adminUserSearch" placeholder="Buscar por nombre, rol o centro" autocomplete="off"/>
+            <button class="btn" id="adminUserSearchBtn">Buscar</button>
+            <button class="btn sec" id="adminUserResetBtn">Limpiar</button>
+            <span class="muted" id="adminUserTotal"></span>
+          </div>
+          <div class="table">
+            <table id="adminUsersTable" data-sortable-table>
+              <thead>
+                <tr><th>ID</th><th>Nombre</th><th>Rol</th><th>Posición</th><th>Sector</th><th>Centros</th><th>Emails / Aprobadores</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p class="muted" id="adminUsersEmpty" style="display:none;">No se encontraron usuarios con ese criterio.</p>
+        </div>
+        <div class="admin-user-detail" id="adminUserDetail" aria-live="polite">
+          <div class="detail-header" style="margin-bottom:8px;">
+            <h3 id="adminUserTitle">Perfil sin selección</h3>
+            <span class="pill" id="adminUserRolePill" style="display:none;"></span>
+          </div>
+          <form id="adminUserForm">
+            <div class="form-grid form-grid--compact">
+              <div>
+                <label for="adminUserId">ID SPM</label>
+                <input id="adminUserId" readonly />
+              </div>
+              <div>
+                <label for="adminUserMail">Correo corporativo</label>
+                <input id="adminUserMail" type="email" placeholder="usuario@empresa.com" autocomplete="off" />
+              </div>
+            </div>
+            <div class="form-grid form-grid--compact">
+              <div>
+                <label for="adminUserNombre">Nombre</label>
+                <input id="adminUserNombre" autocomplete="off" />
+              </div>
+              <div>
+                <label for="adminUserApellido">Apellido</label>
+                <input id="adminUserApellido" autocomplete="off" />
+              </div>
+            </div>
+            <div class="form-grid form-grid--compact">
+              <div>
+                <label for="adminUserRol">Rol</label>
+                <input id="adminUserRol" placeholder="Ej: Administrador, Aprobador" autocomplete="off" list="catalogRolesList" />
+              </div>
+              <div>
+                <label for="adminUserPosicion">Posición</label>
+                <input id="adminUserPosicion" placeholder="Ej: Gerente Regional" autocomplete="off" list="catalogPuestosList" />
+              </div>
+              <div>
+                <label for="adminUserSector">Sector</label>
+                <input id="adminUserSector" autocomplete="off" list="catalogSectoresList" />
+              </div>
+            </div>
+            <label for="adminUserCentros">Centros autorizados</label>
+            <textarea id="adminUserCentros" rows="3" placeholder="Separá por coma o salto de línea"></textarea>
+            <div class="form-grid form-grid--compact">
+              <div>
+                <label for="adminUserJefe">Jefe directo</label>
+                <input id="adminUserJefe" placeholder="mail o ID" autocomplete="off" />
+              </div>
+              <div>
+                <label for="adminUserGerente1">Gerente 1</label>
+                <input id="adminUserGerente1" placeholder="mail o ID" autocomplete="off" />
+              </div>
+              <div>
+                <label for="adminUserGerente2">Gerente 2</label>
+                <input id="adminUserGerente2" placeholder="mail o ID" autocomplete="off" />
+              </div>
+            </div>
+            <div class="form-grid form-grid--compact">
+              <div>
+                <label for="adminUserPassword">Nueva contraseña</label>
+                <input id="adminUserPassword" type="password" autocomplete="new-password" placeholder="Opcional" />
+              </div>
+              <div>
+                <label for="adminUserPasswordConfirm">Confirmar contraseña</label>
+                <input id="adminUserPasswordConfirm" type="password" autocomplete="new-password" placeholder="Repetí la contraseña" />
+              </div>
+            </div>
+            <div class="actions" style="justify-content:flex-start;margin-top:10px;">
+              <button class="btn pri" id="adminUserGuardar" type="submit" disabled>Guardar cambios</button>
+              <button class="btn sec" id="adminUserReset" type="button" disabled>Descartar</button>
+            </div>
+            <p class="muted" id="adminUserHint" style="margin-top:4px;">Seleccioná un usuario para editarlo.</p>
+          </form>
+        </div>
+      </section>
+      </div>
+    </main>
+  </div>
+
+  <datalist id="catalogRolesList"></datalist>
+  <datalist id="catalogPuestosList"></datalist>
+  <datalist id="catalogSectoresList"></datalist>
+
+  <div class="toasts" id="toasts"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
+

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>SPM · Notificaciones</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="main-container">
+    <aside class="sidebar">
+      <a class="sidebar-brand" href="home.html">
+  <img src="assets/spm-logo.svg" alt="Logotipo de SPM"/>
+        <div class="sidebar-brand-copy">
+          <span class="sidebar-brand-title">SPM</span>
+          <span class="sidebar-brand-subtitle">Solicitudes Puntuales de Materiales</span>
+        </div>
+      </a>
+      <nav class="sidebar-nav">
+        <a href="crear-solicitud.html">Crear Solicitud</a>
+        <a href="mis-solicitudes.html">Mis Solicitudes</a>
+        <a href="notificaciones.html" class="active has-badge">Notificaciones<span class="badge hide" id="navNotificationsBadge">0</span></a>
+        <a href="presupuesto.html" id="navPresupuesto" class="hide">Presupuesto</a>
+        <a href="mi-cuenta.html">Mi Cuenta</a>
+      </nav>
+      <nav id="adminNav" class="admin-nav hide"></nav>
+      <nav class="sidebar-nav sidebar-footer">
+        <a href="preferencias.html">Preferencias</a>
+        <a href="#" id="menuCerrarSesion">Cerrar sesión</a>
+        <a href="#" id="menuAyuda">Ayuda</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <div class="content-section content-section--wide">
+        <div class="page-header">
+          <div>
+            <p class="overline">Resumen</p>
+            <h1>Notificaciones</h1>
+            <p class="muted">Seguí el estado de tus solicitudes y las aprobaciones pendientes.</p>
+          </div>
+        </div>
+
+        <section class="pane" id="pendingApprovalsSection" style="display:none;">
+          <header class="section-head">
+            <h2>Solicitudes para aprobar</h2>
+            <p class="helper">Estas solicitudes requieren tu acción como aprobador.</p>
+          </header>
+          <div class="table" id="pendingApprovalsTable" style="margin-top:12px;">
+            <table data-sortable-table>
+              <thead>
+                <tr><th>ID</th><th>Centro</th><th>Sector</th><th>Justificación</th><th>Monto</th><th>Creada</th><th>Acciones</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p class="muted" id="pendingApprovalsEmpty" style="margin-top:12px;display:none;">No tenés solicitudes pendientes de aprobación.</p>
+        </section>
+
+        <section class="pane" style="margin-top:20px;">
+          <header class="section-head">
+            <h2>Actividad reciente</h2>
+            <p class="helper">Tus notificaciones más recientes aparecen primero.</p>
+          </header>
+          <div id="notificationsContainer" class="notifications-list"></div>
+          <p class="muted" id="notificationsEmpty" style="margin-top:12px;display:none;">Sin notificaciones por ahora.</p>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="toasts" id="toasts"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>SPM · Notificaciones</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="main-container">
+    <aside class="sidebar">
+      <a class="sidebar-brand" href="home.html">
+  <img src="assets/spm-logo.svg" alt="Logotipo de SPM"/>
+        <div class="sidebar-brand-copy">
+          <span class="sidebar-brand-title">SPM</span>
+          <span class="sidebar-brand-subtitle">Solicitudes Puntuales de Materiales</span>
+        </div>
+      </a>
+      <nav class="sidebar-nav">
+        <a href="crear-solicitud.html">Crear Solicitud</a>
+        <a href="mis-solicitudes.html">Mis Solicitudes</a>
+        <a href="notificaciones.html" class="active has-badge">Notificaciones<span class="badge hide" id="navNotificationsBadge">0</span></a>
+        <a href="presupuesto.html" id="navPresupuesto" class="hide">Presupuesto</a>
+        <a href="mi-cuenta.html">Mi Cuenta</a>
+      </nav>
+      <nav id="adminNav" class="admin-nav hide"></nav>
+      <nav class="sidebar-nav sidebar-footer">
+        <a href="preferencias.html">Preferencias</a>
+        <a href="#" id="menuCerrarSesion">Cerrar sesión</a>
+        <a href="#" id="menuAyuda">Ayuda</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <div class="content-section content-section--wide">
+        <div class="page-header">
+          <div>
+            <p class="overline">Resumen</p>
+            <h1>Notificaciones</h1>
+            <p class="muted">Seguí el estado de tus solicitudes y las aprobaciones pendientes.</p>
+          </div>
+        </div>
+
+        <section class="pane" id="pendingApprovalsSection" style="display:none;">
+          <header class="section-head">
+            <h2>Solicitudes para aprobar</h2>
+            <p class="helper">Estas solicitudes requieren tu acción como aprobador.</p>
+          </header>
+          <div class="table" id="pendingApprovalsTable" style="margin-top:12px;">
+            <table data-sortable-table>
+              <thead>
+                <tr><th>ID</th><th>Centro</th><th>Sector</th><th>Justificación</th><th>Monto</th><th>Creada</th><th>Acciones</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p class="muted" id="pendingApprovalsEmpty" style="margin-top:12px;display:none;">No tenés solicitudes pendientes de aprobación.</p>
+        </section>
+
+        <section class="pane" style="margin-top:20px;">
+          <header class="section-head">
+            <h2>Actividad reciente</h2>
+            <p class="helper">Tus notificaciones más recientes aparecen primero.</p>
+          </header>
+          <div id="notificationsContainer" class="notifications-list"></div>
+          <p class="muted" id="notificationsEmpty" style="margin-top:12px;display:none;">Sin notificaciones por ahora.</p>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="toasts" id="toasts"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
+

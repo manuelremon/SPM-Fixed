@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>SPM · Solicitudes (Administrador)</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="main-container">
+    <aside class="sidebar">
+      <a class="sidebar-brand" href="home.html">
+  <img src="assets/spm-logo.svg" alt="Logotipo de SPM"/>
+        <div class="sidebar-brand-copy">
+          <span class="sidebar-brand-title">SPM</span>
+          <span class="sidebar-brand-subtitle">Solicitudes Puntuales de Materiales</span>
+        </div>
+      </a>
+      <nav class="sidebar-nav">
+        <a href="crear-solicitud.html">Crear Solicitud</a>
+        <a href="mis-solicitudes.html">Mis Solicitudes</a>
+        <a href="notificaciones.html" class="has-badge">Notificaciones<span class="badge hide" id="navNotificationsBadge">0</span></a>
+        <a href="presupuesto.html" id="navPresupuesto" class="hide">Presupuesto</a>
+        <a href="mi-cuenta.html">Mi Cuenta</a>
+      </nav>
+      <nav id="adminNav" class="admin-nav hide"></nav>
+      <nav class="sidebar-nav sidebar-footer">
+        <a href="preferencias.html">Preferencias</a>
+        <a href="#" id="menuCerrarSesion">Cerrar sesión</a>
+        <a href="#" id="menuAyuda">Ayuda</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <div class="content-section content-section--wide">
+      <div class="page-header">
+        <div>
+          <p class="overline">Administración</p>
+          <h1>Solicitudes de compras</h1>
+          <p class="muted">Monitoreo global del flujo de solicitudes y sus aprobaciones.</p>
+        </div>
+        <button class="btn sec" disabled>Exportar a Excel</button>
+      </div>
+      <section class="pane">
+        <header class="section-head">
+          <h2>Listado consolidado</h2>
+          <p class="helper">Filtrá por estado, centro o solicitante.</p>
+        </header>
+        <div class="admin-toolbar">
+          <select id="adminSolicitudesStatus">
+            <option value="todos">Todos los estados</option>
+            <option value="pendiente_de_aprobacion">Pendiente de aprobación</option>
+            <option value="finalizada">Finalizada</option>
+            <option value="cancelada">Cancelada</option>
+            <option value="cancelacion_pendiente">Cancelación pendiente</option>
+            <option value="cancelacion_rechazada">Cancelación rechazada</option>
+            <option value="draft">Borrador</option>
+          </select>
+          <input id="adminSolicitudesSearch" placeholder="Buscar por ID, usuario o centro" autocomplete="off"/>
+          <button class="btn" id="adminSolicitudesRefresh">Aplicar filtros</button>
+          <span class="muted" id="adminSolicitudesTotal"></span>
+        </div>
+        <div class="table">
+          <table id="adminSolicitudesTable" data-sortable-table>
+            <thead>
+              <tr><th>ID</th><th>Solicitante</th><th>Centro</th><th>Estado</th><th>Monto</th><th>Creada</th><th>Aprobador</th><th>Planificador</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="muted" id="adminSolicitudesEmpty" style="display:none;">No hay solicitudes que coincidan con los filtros.</p>
+      </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="toasts" id="toasts"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>SPM · Solicitudes (Administrador)</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="main-container">
+    <aside class="sidebar">
+      <a class="sidebar-brand" href="home.html">
+  <img src="assets/spm-logo.svg" alt="Logotipo de SPM"/>
+        <div class="sidebar-brand-copy">
+          <span class="sidebar-brand-title">SPM</span>
+          <span class="sidebar-brand-subtitle">Solicitudes Puntuales de Materiales</span>
+        </div>
+      </a>
+      <nav class="sidebar-nav">
+        <a href="crear-solicitud.html">Crear Solicitud</a>
+        <a href="mis-solicitudes.html">Mis Solicitudes</a>
+        <a href="notificaciones.html" class="has-badge">Notificaciones<span class="badge hide" id="navNotificationsBadge">0</span></a>
+        <a href="presupuesto.html" id="navPresupuesto" class="hide">Presupuesto</a>
+        <a href="mi-cuenta.html">Mi Cuenta</a>
+      </nav>
+      <nav id="adminNav" class="admin-nav hide"></nav>
+      <nav class="sidebar-nav sidebar-footer">
+        <a href="preferencias.html">Preferencias</a>
+        <a href="#" id="menuCerrarSesion">Cerrar sesión</a>
+        <a href="#" id="menuAyuda">Ayuda</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <div class="content-section content-section--wide">
+      <div class="page-header">
+        <div>
+          <p class="overline">Administración</p>
+          <h1>Solicitudes de compras</h1>
+          <p class="muted">Monitoreo global del flujo de solicitudes y sus aprobaciones.</p>
+        </div>
+        <button class="btn sec" disabled>Exportar a Excel</button>
+      </div>
+      <section class="pane">
+        <header class="section-head">
+          <h2>Listado consolidado</h2>
+          <p class="helper">Filtrá por estado, centro o solicitante.</p>
+        </header>
+        <div class="admin-toolbar">
+          <select id="adminSolicitudesStatus">
+            <option value="todos">Todos los estados</option>
+            <option value="pendiente_de_aprobacion">Pendiente de aprobación</option>
+            <option value="finalizada">Finalizada</option>
+            <option value="cancelada">Cancelada</option>
+            <option value="cancelacion_pendiente">Cancelación pendiente</option>
+            <option value="cancelacion_rechazada">Cancelación rechazada</option>
+            <option value="draft">Borrador</option>
+          </select>
+          <input id="adminSolicitudesSearch" placeholder="Buscar por ID, usuario o centro" autocomplete="off"/>
+          <button class="btn" id="adminSolicitudesRefresh">Aplicar filtros</button>
+          <span class="muted" id="adminSolicitudesTotal"></span>
+        </div>
+        <div class="table">
+          <table id="adminSolicitudesTable" data-sortable-table>
+            <thead>
+              <tr><th>ID</th><th>Solicitante</th><th>Centro</th><th>Estado</th><th>Monto</th><th>Creada</th><th>Aprobador</th><th>Planificador</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="muted" id="adminSolicitudesEmpty" style="display:none;">No hay solicitudes que coincidan con los filtros.</p>
+      </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="toasts" id="toasts"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
+

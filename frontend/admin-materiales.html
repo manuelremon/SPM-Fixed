@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>SPM · Catálogo de Materiales</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="main-container">
+    <aside class="sidebar">
+      <a class="sidebar-brand" href="home.html">
+  <img src="assets/spm-logo.svg" alt="Logotipo de SPM"/>
+        <div class="sidebar-brand-copy">
+          <span class="sidebar-brand-title">SPM</span>
+          <span class="sidebar-brand-subtitle">Solicitudes Puntuales de Materiales</span>
+        </div>
+      </a>
+      <nav class="sidebar-nav">
+        <a href="crear-solicitud.html">Crear Solicitud</a>
+        <a href="mis-solicitudes.html">Mis Solicitudes</a>
+        <a href="notificaciones.html" class="has-badge">Notificaciones<span class="badge hide" id="navNotificationsBadge">0</span></a>
+        <a href="presupuesto.html" id="navPresupuesto" class="hide">Presupuesto</a>
+        <a href="mi-cuenta.html">Mi Cuenta</a>
+      </nav>
+      <nav id="adminNav" class="admin-nav hide"></nav>
+      <nav class="sidebar-nav sidebar-footer">
+        <a href="preferencias.html">Preferencias</a>
+        <a href="#" id="menuCerrarSesion">Cerrar sesión</a>
+        <a href="#" id="menuAyuda">Ayuda</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <div class="content-section content-section--wide">
+      <div class="page-header">
+        <div>
+          <p class="overline">Administración</p>
+          <h1>Catálogo de materiales</h1>
+          <p class="muted">Consultá y ajustá los materiales maestros disponibles.</p>
+        </div>
+        <button class="btn pri" disabled>Nuevo material</button>
+      </div>
+      <section class="pane admin-materials">
+        <div>
+          <header class="section-head">
+            <h2>Materiales registrados</h2>
+            <p class="helper">Seleccioná un material para ver/editar sus datos maestros.</p>
+          </header>
+          <div class="admin-toolbar">
+            <input id="adminMaterialSearch" placeholder="Buscar por código o descripción" autocomplete="off"/>
+            <button class="btn" id="adminMaterialSearchBtn">Buscar</button>
+            <button class="btn sec" id="adminMaterialResetBtn">Limpiar</button>
+            <span class="muted" id="adminMaterialTotal"></span>
+          </div>
+          <div class="table">
+            <table id="adminMaterialTable" data-sortable-table>
+              <thead>
+                <tr><th>Código</th><th>Descripción</th><th>Unidad</th><th>Precio (USD)</th><th>Centro</th><th>Sector</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p class="muted" id="adminMaterialEmpty" style="display:none;">No hay materiales que coincidan con la búsqueda.</p>
+        </div>
+        <div class="admin-material-detail" id="adminMaterialDetail" aria-live="polite">
+          <h3>Detalle de material</h3>
+          <form id="adminMaterialForm">
+            <label for="adminMaterialCodigo">Código</label>
+            <input id="adminMaterialCodigo" readonly />
+
+            <label for="adminMaterialDescripcion">Descripción</label>
+            <input id="adminMaterialDescripcion" required minlength="3" />
+
+            <label for="adminMaterialUnidad">Unidad</label>
+            <input id="adminMaterialUnidad" placeholder="Ej: UN" />
+
+            <label for="adminMaterialPrecio">Precio (USD)</label>
+            <input id="adminMaterialPrecio" type="number" step="0.01" min="0" />
+
+            <label for="adminMaterialDescripcionLarga">Descripción ampliada</label>
+            <textarea id="adminMaterialDescripcionLarga" rows="6" placeholder="Detalle opcional"></textarea>
+
+            <div class="actions" style="justify-content:flex-start;margin-top:16px;">
+              <button class="btn pri" id="adminMaterialGuardar" type="submit" disabled>Guardar cambios</button>
+              <span class="muted" id="adminMaterialHint">Seleccioná un material para editarlo.</span>
+            </div>
+          </form>
+        </div>
+      </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="toasts" id="toasts"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>SPM · Catálogo de Materiales</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="main-container">
+    <aside class="sidebar">
+      <a class="sidebar-brand" href="home.html">
+  <img src="assets/spm-logo.svg" alt="Logotipo de SPM"/>
+        <div class="sidebar-brand-copy">
+          <span class="sidebar-brand-title">SPM</span>
+          <span class="sidebar-brand-subtitle">Solicitudes Puntuales de Materiales</span>
+        </div>
+      </a>
+      <nav class="sidebar-nav">
+        <a href="crear-solicitud.html">Crear Solicitud</a>
+        <a href="mis-solicitudes.html">Mis Solicitudes</a>
+        <a href="notificaciones.html" class="has-badge">Notificaciones<span class="badge hide" id="navNotificationsBadge">0</span></a>
+        <a href="presupuesto.html" id="navPresupuesto" class="hide">Presupuesto</a>
+        <a href="mi-cuenta.html">Mi Cuenta</a>
+      </nav>
+      <nav id="adminNav" class="admin-nav hide"></nav>
+      <nav class="sidebar-nav sidebar-footer">
+        <a href="preferencias.html">Preferencias</a>
+        <a href="#" id="menuCerrarSesion">Cerrar sesión</a>
+        <a href="#" id="menuAyuda">Ayuda</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <div class="content-section content-section--wide">
+      <div class="page-header">
+        <div>
+          <p class="overline">Administración</p>
+          <h1>Catálogo de materiales</h1>
+          <p class="muted">Consultá y ajustá los materiales maestros disponibles.</p>
+        </div>
+        <button class="btn pri" disabled>Nuevo material</button>
+      </div>
+      <section class="pane admin-materials">
+        <div>
+          <header class="section-head">
+            <h2>Materiales registrados</h2>
+            <p class="helper">Seleccioná un material para ver/editar sus datos maestros.</p>
+          </header>
+          <div class="admin-toolbar">
+            <input id="adminMaterialSearch" placeholder="Buscar por código o descripción" autocomplete="off"/>
+            <button class="btn" id="adminMaterialSearchBtn">Buscar</button>
+            <button class="btn sec" id="adminMaterialResetBtn">Limpiar</button>
+            <span class="muted" id="adminMaterialTotal"></span>
+          </div>
+          <div class="table">
+            <table id="adminMaterialTable" data-sortable-table>
+              <thead>
+                <tr><th>Código</th><th>Descripción</th><th>Unidad</th><th>Precio (USD)</th><th>Centro</th><th>Sector</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p class="muted" id="adminMaterialEmpty" style="display:none;">No hay materiales que coincidan con la búsqueda.</p>
+        </div>
+        <div class="admin-material-detail" id="adminMaterialDetail" aria-live="polite">
+          <h3>Detalle de material</h3>
+          <form id="adminMaterialForm">
+            <label for="adminMaterialCodigo">Código</label>
+            <input id="adminMaterialCodigo" readonly />
+
+            <label for="adminMaterialDescripcion">Descripción</label>
+            <input id="adminMaterialDescripcion" required minlength="3" />
+
+            <label for="adminMaterialUnidad">Unidad</label>
+            <input id="adminMaterialUnidad" placeholder="Ej: UN" />
+
+            <label for="adminMaterialPrecio">Precio (USD)</label>
+            <input id="adminMaterialPrecio" type="number" step="0.01" min="0" />
+
+            <label for="adminMaterialDescripcionLarga">Descripción ampliada</label>
+            <textarea id="adminMaterialDescripcionLarga" rows="6" placeholder="Detalle opcional"></textarea>
+
+            <div class="actions" style="justify-content:flex-start;margin-top:16px;">
+              <button class="btn pri" id="adminMaterialGuardar" type="submit" disabled>Guardar cambios</button>
+              <span class="muted" id="adminMaterialHint">Seleccioná un material para editarlo.</span>
+            </div>
+          </form>
+        </div>
+      </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="toasts" id="toasts"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
+

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>SPM · Crear Solicitud</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="main-container">
+    <aside class="sidebar">
+      <a class="sidebar-brand" href="home.html">
+        <img src="assets/spm-logo.svg" alt="Logotipo de SPM"/>
+        <div class="sidebar-brand-copy">
+          <span class="sidebar-brand-title">SPM</span>
+          <span class="sidebar-brand-subtitle">Solicitudes Puntuales de Materiales</span>
+        </div>
+      </a>
+      <nav class="sidebar-nav">
+        <a href="crear-solicitud.html" class="active">Crear Solicitud</a>
+        <a href="mis-solicitudes.html">Mis Solicitudes</a>
+        <a href="notificaciones.html" class="has-badge">Notificaciones<span class="badge hide" id="navNotificationsBadge">0</span></a>
+        <a href="presupuesto.html" id="navPresupuesto" class="hide">Presupuesto</a>
+        <a href="mi-cuenta.html">Mi Cuenta</a>
+      </nav>
+      <nav id="adminNav" class="admin-nav hide"></nav>
+      <nav class="sidebar-nav sidebar-footer">
+        <a href="preferencias.html">Preferencias</a>
+        <a href="#" id="menuCerrarSesion">Cerrar sesión</a>
+        <a href="#" id="menuAyuda">Ayuda</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <div class="content-section content-section--wide">
+        <div class="page-header">
+          <div>
+            <h1>Crear Solicitud</h1>
+          </div>
+        </div>
+
+        <input type="hidden" id="solicitudId" />
+
+        <section class="pane form-pane">
+          <div class="form-grid form-grid--compact">
+            <div class="field">
+              <label for="centro">Centro</label>
+              <select id="centro">
+                <option value="" disabled selected>Seleccioná un centro</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="centroDeCostos">Centro de costos</label>
+              <input id="centroDeCostos" placeholder="Ej: 40031122" />
+            </div>
+            <div class="field">
+              <label for="sector">Sector</label>
+              <input id="sector" placeholder="Se completa según tu perfil" readonly />
+            </div>
+            <div class="field">
+              <label for="almacenVirtual">Almacén virtual</label>
+              <select id="almacenVirtual">
+                <option value="" disabled selected>Seleccioná un almacén virtual</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="criticidad">Criticidad</label>
+              <select id="criticidad">
+                <option value="Normal">Normal</option>
+                <option value="Alta">Alta</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="fechaNecesidad">Fecha de necesidad</label>
+              <input type="date" id="fechaNecesidad" />
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-label-row" style="display:flex;align-items:center;gap:0.75rem;">
+              <label for="just">Justificación</label>
+              <button type="button" class="btn sec" id="btnAdjuntar">Adjuntar archivos</button>
+            </div>
+            <textarea id="just" rows="5" placeholder="Describe el motivo de la solicitud"></textarea>
+          </div>
+          <div class="actions" style="justify-content:flex-start;">
+            <button class="btn pri" id="btnContinuar">Continuar</button>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="toasts" id="toasts"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
+

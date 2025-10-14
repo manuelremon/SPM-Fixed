@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>SPM · Preferencias</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="main-container">
+    <aside class="sidebar">
+      <a class="sidebar-brand" href="home.html">
+  <img src="assets/spm-logo.svg" alt="Logotipo de SPM"/>
+        <div class="sidebar-brand-copy">
+          <span class="sidebar-brand-title">SPM</span>
+          <span class="sidebar-brand-subtitle">Solicitudes Puntuales de Materiales</span>
+        </div>
+      </a>
+      <nav class="sidebar-nav">
+        <a href="crear-solicitud.html">Crear Solicitud</a>
+        <a href="mis-solicitudes.html">Mis Solicitudes</a>
+        <a href="notificaciones.html" class="has-badge">Notificaciones<span class="badge hide" id="navNotificationsBadge">0</span></a>
+        <a href="presupuesto.html" id="navPresupuesto" class="hide">Presupuesto</a>
+        <a href="mi-cuenta.html">Mi Cuenta</a>
+      </nav>
+      <nav id="adminNav" class="admin-nav hide"></nav>
+      <nav class="sidebar-nav sidebar-footer">
+        <a href="preferencias.html" class="active">Preferencias</a>
+        <a href="#" id="menuCerrarSesion">Cerrar sesión</a>
+        <a href="#" id="menuAyuda">Ayuda</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <div class="content-section content-section--wide">
+        <div class="page-header">
+          <div>
+            <p class="overline">Experiencia</p>
+            <h1>Preferencias personales</h1>
+            <p class="muted">Configura notificaciones, vistas y atajos para adaptar SPM a tu forma de trabajo.</p>
+          </div>
+        </div>
+
+        <section class="pane">
+          <header class="section-head">
+            <h2>Notificaciones</h2>
+            <p class="helper">Ajustá la frecuencia de avisos que recibís por correo y dentro de la aplicación.</p>
+          </header>
+          <form id="preferencesForm" class="form-grid" autocomplete="off">
+            <label class="toggle">
+              <input type="checkbox" id="prefEmailAlerts"/>
+              <span>Recibir resumen diario por correo</span>
+            </label>
+            <label class="toggle">
+              <input type="checkbox" id="prefRealtimeToasts"/>
+              <span>Mostrar alertas emergentes en nuevos eventos</span>
+            </label>
+            <label class="toggle">
+              <input type="checkbox" id="prefApprovalDigest"/>
+              <span>Consolidar solicitudes pendientes en un único aviso</span>
+            </label>
+            <div class="field-group">
+              <label for="prefDigestHour">Horario del resumen diario</label>
+              <input type="time" id="prefDigestHour" min="06:00" max="22:00"/>
+            </div>
+          </form>
+        </section>
+
+        <section class="pane" style="margin-top:20px;">
+          <header class="section-head">
+            <h2>Interfaz</h2>
+            <p class="helper">Personalizá la apariencia de los listados y la densidad de información.</p>
+          </header>
+          <div class="form-grid">
+            <div class="field-group">
+              <label for="prefTheme">Tema visual</label>
+              <select id="prefTheme">
+                <option value="auto">Automático</option>
+                <option value="light">Claro</option>
+                <option value="dark">Oscuro</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="prefDensity">Densidad de tablas</label>
+              <select id="prefDensity">
+                <option value="comfortable">Cómoda</option>
+                <option value="compact">Compacta</option>
+                <option value="extended">Extendida</option>
+              </select>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" id="prefRememberFilters"/>
+              <span>Recordar filtros de búsqueda entre sesiones</span>
+            </label>
+            <label class="toggle">
+              <input type="checkbox" id="prefKeyboardShortcuts"/>
+              <span>Habilitar accesos rápidos con el teclado</span>
+            </label>
+          </div>
+        </section>
+
+        <section class="pane" style="margin-top:20px;">
+          <header class="section-head">
+            <h2>Guardar configuración</h2>
+            <p class="helper">Tus datos se almacenan localmente en este equipo.</p>
+          </header>
+          <div class="actions" style="justify-content:flex-end;">
+            <button class="btn sec" id="prefReset">Restablecer valores</button>
+            <button class="btn pri" id="prefSave">Guardar cambios</button>
+          </div>
+          <p class="muted" id="prefStatus" style="margin-top:12px;">No hay cambios pendientes.</p>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="toasts" id="toasts"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>SPM · Preferencias</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="main-container">
+    <aside class="sidebar">
+      <a class="sidebar-brand" href="home.html">
+  <img src="assets/spm-logo.svg" alt="Logotipo de SPM"/>
+        <div class="sidebar-brand-copy">
+          <span class="sidebar-brand-title">SPM</span>
+          <span class="sidebar-brand-subtitle">Solicitudes Puntuales de Materiales</span>
+        </div>
+      </a>
+      <nav class="sidebar-nav">
+        <a href="crear-solicitud.html">Crear Solicitud</a>
+        <a href="mis-solicitudes.html">Mis Solicitudes</a>
+        <a href="notificaciones.html" class="has-badge">Notificaciones<span class="badge hide" id="navNotificationsBadge">0</span></a>
+        <a href="presupuesto.html" id="navPresupuesto" class="hide">Presupuesto</a>
+        <a href="mi-cuenta.html">Mi Cuenta</a>
+      </nav>
+      <nav id="adminNav" class="admin-nav hide"></nav>
+      <nav class="sidebar-nav sidebar-footer">
+        <a href="preferencias.html" class="active">Preferencias</a>
+        <a href="#" id="menuCerrarSesion">Cerrar sesión</a>
+        <a href="#" id="menuAyuda">Ayuda</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <div class="content-section content-section--wide">
+        <div class="page-header">
+          <div>
+            <p class="overline">Experiencia</p>
+            <h1>Preferencias personales</h1>
+            <p class="muted">Configura notificaciones, vistas y atajos para adaptar SPM a tu forma de trabajo.</p>
+          </div>
+        </div>
+
+        <section class="pane">
+          <header class="section-head">
+            <h2>Notificaciones</h2>
+            <p class="helper">Ajustá la frecuencia de avisos que recibís por correo y dentro de la aplicación.</p>
+          </header>
+          <form id="preferencesForm" class="form-grid" autocomplete="off">
+            <label class="toggle">
+              <input type="checkbox" id="prefEmailAlerts"/>
+              <span>Recibir resumen diario por correo</span>
+            </label>
+            <label class="toggle">
+              <input type="checkbox" id="prefRealtimeToasts"/>
+              <span>Mostrar alertas emergentes en nuevos eventos</span>
+            </label>
+            <label class="toggle">
+              <input type="checkbox" id="prefApprovalDigest"/>
+              <span>Consolidar solicitudes pendientes en un único aviso</span>
+            </label>
+            <div class="field-group">
+              <label for="prefDigestHour">Horario del resumen diario</label>
+              <input type="time" id="prefDigestHour" min="06:00" max="22:00"/>
+            </div>
+          </form>
+        </section>
+
+        <section class="pane" style="margin-top:20px;">
+          <header class="section-head">
+            <h2>Interfaz</h2>
+            <p class="helper">Personalizá la apariencia de los listados y la densidad de información.</p>
+          </header>
+          <div class="form-grid">
+            <div class="field-group">
+              <label for="prefTheme">Tema visual</label>
+              <select id="prefTheme">
+                <option value="auto">Automático</option>
+                <option value="light">Claro</option>
+                <option value="dark">Oscuro</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="prefDensity">Densidad de tablas</label>
+              <select id="prefDensity">
+                <option value="comfortable">Cómoda</option>
+                <option value="compact">Compacta</option>
+                <option value="extended">Extendida</option>
+              </select>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" id="prefRememberFilters"/>
+              <span>Recordar filtros de búsqueda entre sesiones</span>
+            </label>
+            <label class="toggle">
+              <input type="checkbox" id="prefKeyboardShortcuts"/>
+              <span>Habilitar accesos rápidos con el teclado</span>
+            </label>
+          </div>
+        </section>
+
+        <section class="pane" style="margin-top:20px;">
+          <header class="section-head">
+            <h2>Guardar configuración</h2>
+            <p class="helper">Tus datos se almacenan localmente en este equipo.</p>
+          </header>
+          <div class="actions" style="justify-content:flex-end;">
+            <button class="btn sec" id="prefReset">Restablecer valores</button>
+            <button class="btn pri" id="prefSave">Guardar cambios</button>
+          </div>
+          <p class="muted" id="prefStatus" style="margin-top:12px;">No hay cambios pendientes.</p>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="toasts" id="toasts"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
+

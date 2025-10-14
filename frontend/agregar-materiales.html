@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>SPM · Agregar Materiales</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="main-container">
+    <aside class="sidebar">
+      <a class="sidebar-brand" href="home.html">
+        <img src="assets/spm-logo.svg" alt="Logotipo de SPM"/>
+        <div class="sidebar-brand-copy">
+          <span class="sidebar-brand-title">SPM</span>
+          <span class="sidebar-brand-subtitle">Solicitudes Puntuales de Materiales</span>
+        </div>
+      </a>
+      <nav class="sidebar-nav">
+        <a href="crear-solicitud.html" class="active">Crear Solicitud</a>
+        <a href="mis-solicitudes.html">Mis Solicitudes</a>
+        <a href="notificaciones.html" class="has-badge">Notificaciones<span class="badge hide" id="navNotificationsBadge">0</span></a>
+          <a href="presupuesto.html" id="navPresupuesto" class="hide">Presupuesto</a>
+          <a href="mi-cuenta.html">Mi Cuenta</a>
+      </nav>
+      <nav id="adminNav" class="admin-nav hide"></nav>
+      <nav class="sidebar-nav sidebar-footer">
+        <a href="preferencias.html">Preferencias</a>
+        <a href="#" id="menuCerrarSesion">Cerrar sesión</a>
+        <a href="#" id="menuAyuda">Ayuda</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <div class="content-section content-section--wide">
+        <div class="page-header">
+          <div>
+            <h1>Agregar materiales</h1>
+            <p class="muted">Solicitud ID: <span id="solicitudIdDisplay"></span></p>
+          </div>
+        </div>
+
+        <div class="row search-row" style="align-items:flex-end;">
+          <div class="searchbox">
+            <label for="codeSearch">Código SAP</label>
+            <input id="codeSearch" placeholder="Ej: 1000000006" autocomplete="off"/>
+            <div id="suggestCode" class="suggest hide"></div>
+          </div>
+          <div class="searchbox">
+            <label for="descSearch">Descripción</label>
+            <input id="descSearch" placeholder="Descripción del material" autocomplete="off"/>
+            <div id="suggestDesc" class="suggest hide"></div>
+          </div>
+          <div class="search-actions">
+            <label>&nbsp;</label>
+            <button class="btn" id="btnShowMaterialDetail" disabled>Ver descripción ampliada</button>
+          </div>
+          <div class="search-actions">
+            <label>&nbsp;</label>
+            <button class="btn pri" id="btnAdd">Agregar ítem</button>
+          </div>
+        </div>
+
+        <div class="table">
+          <table id="tbl" data-sortable-table>
+            <thead><tr><th>Código</th><th>Descripción</th><th>Unidad</th><th>Precio unitario</th><th>Cantidad</th><th>Total</th><th class="pill"></th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <div class="pill" style="margin-top:16px;display:inline-flex;gap:8px;align-items:center;">
+          <span>Total estimado:</span>
+          <strong id="cartTotal">$0,00</strong>
+        </div>
+
+        <div class="actions" style="margin-top:24px;justify-content:space-between;">
+          <a href="crear-solicitud.html" class="btn">Volver</a>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button class="btn sec" id="btnSaveDraft">Guardar como borrador</button>
+            <button class="btn pri" id="btnSend">Finalizar y enviar solicitud</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="toasts" id="toasts"></div>
+
+  <div class="modal hide" id="materialDetailModal">
+    <div class="modal-content">
+      <button class="modal-close" id="materialDetailClose" aria-label="Cerrar">&times;</button>
+      <h2 id="materialDetailTitle"></h2>
+      <p id="materialDetailBody"></p>
+    </div>
+  </div>
+  <script src="app.js" defer></script>
+</body>
+
+</html>
+

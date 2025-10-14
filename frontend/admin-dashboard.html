@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>SPM · Panel de Control</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="main-container">
+    <aside class="sidebar">
+      <a class="sidebar-brand" href="home.html">
+  <img src="assets/spm-logo.svg" alt="Logotipo de SPM"/>
+        <div class="sidebar-brand-copy">
+          <span class="sidebar-brand-title">SPM</span>
+          <span class="sidebar-brand-subtitle">Solicitudes Puntuales de Materiales</span>
+        </div>
+      </a>
+      <nav class="sidebar-nav">
+        <a href="crear-solicitud.html">Crear Solicitud</a>
+        <a href="mis-solicitudes.html">Mis Solicitudes</a>
+        <a href="notificaciones.html" class="has-badge">Notificaciones<span class="badge hide" id="navNotificationsBadge">0</span></a>
+        <a href="presupuesto.html" id="navPresupuesto" class="hide">Presupuesto</a>
+        <a href="mi-cuenta.html">Mi Cuenta</a>
+      </nav>
+      <nav id="adminNav" class="admin-nav hide"></nav>
+      <nav class="sidebar-nav sidebar-footer">
+        <a href="preferencias.html">Preferencias</a>
+        <a href="#" id="menuCerrarSesion">Cerrar sesión</a>
+        <a href="#" id="menuAyuda">Ayuda</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <div class="content-section content-section--wide">
+        <div class="page-header">
+          <div>
+            <p class="overline">Administración</p>
+            <h1>Panel de control</h1>
+            <p class="muted">Consolidado operativo de solicitudes, usuarios y materiales.</p>
+          </div>
+        </div>
+
+        <section class="admin-metrics" id="adminMetrics">
+          <article class="metric-card">
+            <span class="metric-label">Solicitudes totales</span>
+            <span class="metric-value" id="metricTotalSolicitudes">—</span>
+            <span class="metric-sub" id="metricSolicitudesDetalle">Pendientes: — · Finalizadas: —</span>
+          </article>
+          <article class="metric-card">
+            <span class="metric-label">Usuarios registrados</span>
+            <span class="metric-value" id="metricUsuarios">—</span>
+            <span class="metric-sub" id="metricRolesDetalle">—</span>
+          </article>
+          <article class="metric-card">
+            <span class="metric-label">Materiales en catálogo</span>
+            <span class="metric-value" id="metricMateriales">—</span>
+            <span class="metric-sub">Actualizados desde SAP</span>
+          </article>
+        </section>
+
+        <section class="pane" id="adminRolesSection">
+          <header class="section-head">
+            <h2>Distribución de roles</h2>
+            <p class="helper">Usuarios agrupados según perfiles operativos.</p>
+          </header>
+          <ul class="admin-list" id="adminRolesList"></ul>
+          <p class="muted" id="adminRolesEmpty" style="display:none;">No se encontraron roles definidos.</p>
+        </section>
+
+        <section class="pane" id="adminRecentSection" style="margin-top:20px;">
+          <header class="section-head">
+            <h2>Últimas solicitudes</h2>
+            <p class="helper">Se muestran los últimos movimientos registrados.</p>
+          </header>
+          <div class="table">
+            <table id="adminRecentTable" data-sortable-table>
+              <thead>
+                <tr><th>ID</th><th>Solicitante</th><th>Centro</th><th>Estado</th><th>Monto</th><th>Creada</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p class="muted" id="adminRecentEmpty" style="display:none;">Sin movimientos recientes.</p>
+        </section>
+
+        <section class="pane" style="margin-top:20px;">
+          <header class="section-head">
+            <h2>Centros con mayor actividad</h2>
+            <p class="helper">Ranking por cantidad de solicitudes y monto estimado.</p>
+          </header>
+          <div class="table">
+            <table id="adminTopCentros" data-sortable-table>
+              <thead>
+                <tr><th>Centro</th><th>Solicitudes</th><th>Monto acumulado</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p class="muted" id="adminTopCentrosEmpty" style="display:none;">Aún no se registran solicitudes.</p>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="toasts" id="toasts"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>SPM · Panel de Control</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="main-container">
+    <aside class="sidebar">
+      <a class="sidebar-brand" href="home.html">
+  <img src="assets/spm-logo.svg" alt="Logotipo de SPM"/>
+        <div class="sidebar-brand-copy">
+          <span class="sidebar-brand-title">SPM</span>
+          <span class="sidebar-brand-subtitle">Solicitudes Puntuales de Materiales</span>
+        </div>
+      </a>
+      <nav class="sidebar-nav">
+        <a href="crear-solicitud.html">Crear Solicitud</a>
+        <a href="mis-solicitudes.html">Mis Solicitudes</a>
+        <a href="notificaciones.html" class="has-badge">Notificaciones<span class="badge hide" id="navNotificationsBadge">0</span></a>
+        <a href="presupuesto.html" id="navPresupuesto" class="hide">Presupuesto</a>
+        <a href="mi-cuenta.html">Mi Cuenta</a>
+      </nav>
+      <nav id="adminNav" class="admin-nav hide"></nav>
+      <nav class="sidebar-nav sidebar-footer">
+        <a href="preferencias.html">Preferencias</a>
+        <a href="#" id="menuCerrarSesion">Cerrar sesión</a>
+        <a href="#" id="menuAyuda">Ayuda</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <div class="content-section content-section--wide">
+        <div class="page-header">
+          <div>
+            <p class="overline">Administración</p>
+            <h1>Panel de control</h1>
+            <p class="muted">Consolidado operativo de solicitudes, usuarios y materiales.</p>
+          </div>
+        </div>
+
+        <section class="admin-metrics" id="adminMetrics">
+          <article class="metric-card">
+            <span class="metric-label">Solicitudes totales</span>
+            <span class="metric-value" id="metricTotalSolicitudes">—</span>
+            <span class="metric-sub" id="metricSolicitudesDetalle">Pendientes: — · Finalizadas: —</span>
+          </article>
+          <article class="metric-card">
+            <span class="metric-label">Usuarios registrados</span>
+            <span class="metric-value" id="metricUsuarios">—</span>
+            <span class="metric-sub" id="metricRolesDetalle">—</span>
+          </article>
+          <article class="metric-card">
+            <span class="metric-label">Materiales en catálogo</span>
+            <span class="metric-value" id="metricMateriales">—</span>
+            <span class="metric-sub">Actualizados desde SAP</span>
+          </article>
+        </section>
+
+        <section class="pane" id="adminRolesSection">
+          <header class="section-head">
+            <h2>Distribución de roles</h2>
+            <p class="helper">Usuarios agrupados según perfiles operativos.</p>
+          </header>
+          <ul class="admin-list" id="adminRolesList"></ul>
+          <p class="muted" id="adminRolesEmpty" style="display:none;">No se encontraron roles definidos.</p>
+        </section>
+
+        <section class="pane" id="adminRecentSection" style="margin-top:20px;">
+          <header class="section-head">
+            <h2>Últimas solicitudes</h2>
+            <p class="helper">Se muestran los últimos movimientos registrados.</p>
+          </header>
+          <div class="table">
+            <table id="adminRecentTable" data-sortable-table>
+              <thead>
+                <tr><th>ID</th><th>Solicitante</th><th>Centro</th><th>Estado</th><th>Monto</th><th>Creada</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p class="muted" id="adminRecentEmpty" style="display:none;">Sin movimientos recientes.</p>
+        </section>
+
+        <section class="pane" style="margin-top:20px;">
+          <header class="section-head">
+            <h2>Centros con mayor actividad</h2>
+            <p class="helper">Ranking por cantidad de solicitudes y monto estimado.</p>
+          </header>
+          <div class="table">
+            <table id="adminTopCentros" data-sortable-table>
+              <thead>
+                <tr><th>Centro</th><th>Solicitudes</th><th>Monto acumulado</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p class="muted" id="adminTopCentrosEmpty" style="display:none;">Aún no se registran solicitudes.</p>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="toasts" id="toasts"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
+
